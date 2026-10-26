@@ -218,7 +218,7 @@ class NoteGrid extends StatelessWidget {
 
 // WIDGET BERSAMA: DRAWER (menu samping)
 class KeepDrawer extends StatelessWidget {
-  final String current; // 'catatan' atau 'arsip'
+  final String current; // 'catatan', 'arsip', atau 'sampah'
   const KeepDrawer({super.key, required this.current});
 
   Widget _item(
@@ -305,7 +305,22 @@ class KeepDrawer extends StatelessWidget {
                 }
               },
             ),
-            _item(context, icon: Icons.delete_outline, label: 'Sampah'),
+            // Menu: Sampah -> buka TrashPage
+            _item(
+              context,
+              icon: Icons.delete_outline,
+              label: 'Sampah',
+              selected: current == 'sampah',
+              onTap: () {
+                Navigator.pop(context);
+                if (current != 'sampah') {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const TrashPage()),
+                  );
+                }
+              },
+            ),
             _item(context, icon: Icons.settings_outlined, label: 'Setelan'),
             _item(context, icon: Icons.help_outline, label: 'Bantuan & masukan'),
           ],
@@ -670,6 +685,134 @@ class SearchPage extends StatelessWidget {
           const SizedBox(height: 32),
         ],
       ),
+    );
+  }
+}
+
+// 5. TRASHPAGE (SAMPAH)
+
+// Data dummy untuk Sampah
+const List<Note> trashNotes = [
+  Note(
+    title: 'Catatan Rapat',
+    body: 'Rapat organisasi hari Jumat jam 3 sore di ruang 204.',
+    color: Color(0xFF3A3F45),
+  ),
+  Note(
+    title: 'Resep Nasi Goreng',
+    body: 'Nasi\nBawang merah\nBawang putih\nKecap manis\nTelur',
+    color: Color(0xFF4B443A),
+  ),
+  Note(
+    title: '',
+    body: 'Jangan lupa bayar kos tanggal 5.',
+    color: Color(0xFF284255),
+  ),
+  Note(
+    title: 'Draft Laporan',
+    body: 'BAB 1 Pendahuluan\nBAB 2 Landasan Teori\nBAB 3 Metodologi',
+    color: Color(0xFF472E5B),
+  ),
+];
+
+class TrashPage extends StatefulWidget {
+  const TrashPage({super.key});
+
+  @override
+  State<TrashPage> createState() => _TrashPageState();
+}
+
+class _TrashPageState extends State<TrashPage> {
+  // Salinan data supaya bisa dikosongkan
+  List<Note> _notes = List.of(trashNotes);
+
+  // Dialog konfirmasi "Kosongkan Sampah"
+  void _confirmEmptyTrash() {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: kSearchBackground,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+        content: const Text(
+          'Kosongkan Sampah? Semua catatan di Sampah akan dihapus secara permanen.',
+          style: TextStyle(fontSize: 16, color: Colors.white70),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Batal', style: TextStyle(color: kGreenAccent)),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+              setState(() => _notes = []);
+            },
+            child: const Text(
+              'Kosongkan Sampah',
+              style: TextStyle(color: kGreenAccent),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Tampilan saat Sampah kosong: ikon besar + teks di tengah
+  Widget _emptyState() {
+    return const Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.delete_outline, size: 120, color: Colors.white24),
+          SizedBox(height: 16),
+          Text(
+            'Tidak ada catatan di Sampah',
+            style: TextStyle(fontSize: 16, color: Colors.white60),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: const KeepDrawer(current: 'sampah'),
+      appBar: AppBar(
+        title: const Text('Sampah', style: TextStyle(fontSize: 22)),
+        actions: [
+          // Ikon titik tiga -> menu "Kosongkan Sampah"
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.more_vert, color: Colors.white70),
+            color: kButtonBg,
+            enabled: _notes.isNotEmpty,
+            onSelected: (_) => _confirmEmptyTrash(),
+            itemBuilder: (_) => const [
+              PopupMenuItem(
+                value: 'kosongkan',
+                child: Text('Kosongkan Sampah'),
+              ),
+            ],
+          ),
+          const SizedBox(width: 4),
+        ],
+      ),
+      body: _notes.isEmpty
+          ? _emptyState()
+          : Column(
+              children: [
+                // Info masa simpan catatan di Sampah
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(24, 8, 24, 16),
+                  child: Text(
+                    'Catatan di Sampah dihapus setelah 7 hari.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 14, color: Colors.white70),
+                  ),
+                ),
+                Expanded(child: NoteGrid(notes: _notes)),
+              ],
+            ),
     );
   }
 }
