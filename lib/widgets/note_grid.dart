@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_lanjut_utp/models/note.dart';
 import 'package:mobile_lanjut_utp/widgets/note_card.dart';
 
-// WIDGET BERSAMA: GRID CATATAN (dipakai Home & Arsip)
+// Grid (dipakai Home & Arsip)
 class NoteGrid extends StatelessWidget {
   final List<Note> notes;
   const NoteGrid({super.key, required this.notes});

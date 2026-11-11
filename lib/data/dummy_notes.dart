@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_lanjut_utp/models/note.dart';
 
-// Data dummy untuk Beranda
+// dummy beranda
 const List<Note> homeNotes = [
   Note(
     title: 'LINUX UBUNTU',
@@ -37,7 +37,7 @@ const List<Note> homeNotes = [
   ),
 ];
 
-// Data dummy untuk Reminders (Pengingat)
+// dummy pengingat
 final List<Note> reminderNotes = [
   Note(
     title: 'Rapat Tim Mobile',
@@ -71,7 +71,7 @@ final List<Note> reminderNotes = [
   ),
 ];
 
-// Data dummy untuk Arsip
+// dummy arsip
 const List<Note> archiveNotes = [
   Note(
     title: 'Tugas Mobile Lanjut',
@@ -95,7 +95,7 @@ const List<Note> archiveNotes = [
   ),
 ];
 
-// Data dummy untuk Sampah
+// dummy sampah
 const List<Note> trashNotes = [
   Note(
     title: 'Catatan Rapat',

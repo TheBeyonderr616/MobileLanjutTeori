@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_lanjut_utp/constants/app_colors.dart';
 
-// 4. SEARCHPAGE (PENCARIAN)
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
 
-  // Judul bagian + tulisan "Lainnya" di kanan
   Widget _sectionHeader(String title, {bool showMore = true}) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 24, 20, 16),
@@ -27,7 +25,7 @@ class SearchPage extends StatelessWidget {
     );
   }
 
-  // Satu pilihan filter: lingkaran lonjong + label di bawahnya
+  // lingkaran lonjong dan label di bawahnya
   Widget _filter(IconData icon, String label) {
     return SizedBox(
       width: 90,
@@ -49,7 +47,7 @@ class SearchPage extends StatelessWidget {
     );
   }
 
-  // Satu pilihan warna
+  // pilihan warna
   Widget _colorPill(Color? color) {
     return Container(
       width: 80,
@@ -68,7 +66,7 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Daftar warna di bagian "Warna" (null = tanpa warna)
+    // daftar warna
     final List<Color?> colors = [
       null,
       const Color(0xFF77172E),
@@ -84,7 +82,7 @@ class SearchPage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: kSearchBackground,
-      // AppBar khusus: langsung berisi kolom input pencarian
+      // autofocus pencarian
       appBar: AppBar(
         backgroundColor: kSearchBackground,
         leading: IconButton(
@@ -100,7 +98,6 @@ class SearchPage extends StatelessWidget {
             border: InputBorder.none,
           ),
         ),
-        // Garis pemisah di bawah AppBar
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
           child: Divider(height: 1, color: Colors.white24),
@@ -108,7 +105,7 @@ class SearchPage extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          // --- Bagian Jenis ---
+          // Bagian Jenis
           _sectionHeader('Jenis'),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -118,7 +115,7 @@ class SearchPage extends StatelessWidget {
               _filter(Icons.brush, 'Gambar'),
             ],
           ),
-          // --- Bagian Berbagai Hal ---
+          // Bagian Berbagai Hal
           _sectionHeader('Berbagai Hal'),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -128,13 +125,13 @@ class SearchPage extends StatelessWidget {
               _filter(Icons.movie_outlined, 'Film'),
             ],
           ),
-          // --- Bagian Warna ---
+          // Bagian Warna
           _sectionHeader('Warna', showMore: false),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: GridView.count(
               crossAxisCount: 3,
-              shrinkWrap: true, // supaya muat di dalam ListView
+              shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               mainAxisSpacing: 16,
               crossAxisSpacing: 16,

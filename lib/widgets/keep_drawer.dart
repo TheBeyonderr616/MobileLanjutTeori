@@ -4,7 +4,7 @@ import 'package:mobile_lanjut_utp/pages/archive_page.dart';
 import 'package:mobile_lanjut_utp/pages/reminders_page.dart';
 import 'package:mobile_lanjut_utp/pages/trash_page.dart';
 
-// WIDGET BERSAMA: DRAWER (menu samping)
+// Drawer (menu samping)
 class KeepDrawer extends StatelessWidget {
   final String current; // 'catatan', 'arsip', 'pengingat', atau 'sampah'
   const KeepDrawer({super.key, required this.current});

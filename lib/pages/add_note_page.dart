@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_lanjut_utp/constants/app_colors.dart';
 
-// 2. ADDNOTEPAGE (TAMBAH CATATAN)
 class AddNotePage extends StatelessWidget {
   const AddNotePage({super.key});
 
-  // Tombol kotak membulat (dipakai di AppBar dan bar bawah)
+  // tombol kotak bulat (dipakai di AppBar dan bar bawah)
   Widget _roundButton(IconData icon, {VoidCallback? onTap}) {
     return Padding(
       padding: const EdgeInsets.only(left: 8),
@@ -29,12 +28,12 @@ class AddNotePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // Tombol back
+        // tombol back
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
-        // Ikon pin, tambah kolaborator, dan arsip
+        // ikon pin, tambah kolaborator, dan arsip
         actions: [
           _roundButton(Icons.push_pin_outlined),
           _roundButton(Icons.person_add_alt),
@@ -46,7 +45,7 @@ class AddNotePage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
         child: Column(
           children: [
-            // TextField Judul (besar, tanpa garis bawah)
+            // TextField Judul
             const TextField(
               style: TextStyle(fontSize: 28),
               decoration: InputDecoration(
@@ -55,7 +54,7 @@ class AddNotePage extends StatelessWidget {
                 border: InputBorder.none,
               ),
             ),
-            // TextField Catatan (multiline, tanpa garis bawah)
+            // TextField Catatan (multiline)
             const Expanded(
               child: TextField(
                 maxLines: null, // boleh banyak baris
@@ -72,7 +71,7 @@ class AddNotePage extends StatelessWidget {
           ],
         ),
       ),
-      // Bar tombol di bagian bawah
+      // bar tombol di bagian bawah
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(12, 8, 20, 12),

@@ -3,7 +3,6 @@ import 'package:mobile_lanjut_utp/data/dummy_notes.dart';
 import 'package:mobile_lanjut_utp/widgets/keep_drawer.dart';
 import 'package:mobile_lanjut_utp/widgets/note_grid.dart';
 
-// 3. ARCHIVEPAGE (ARSIP)
 class ArchivePage extends StatelessWidget {
   const ArchivePage({super.key});
 
@@ -20,7 +19,7 @@ class ArchivePage extends StatelessWidget {
           SizedBox(width: 16),
         ],
       ),
-      // Sama seperti beranda, tapi warna kartu lebih redup
+      // grid card
       body: const NoteGrid(notes: archiveNotes),
     );
   }

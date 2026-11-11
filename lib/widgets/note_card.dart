@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_lanjut_utp/models/note.dart';
 
-// KARTU CATATAN
 class NoteCard extends StatelessWidget {
   final Note note;
   const NoteCard({super.key, required this.note});

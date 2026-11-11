@@ -5,8 +5,6 @@ import 'package:mobile_lanjut_utp/models/note.dart';
 import 'package:mobile_lanjut_utp/widgets/keep_drawer.dart';
 import 'package:mobile_lanjut_utp/widgets/note_grid.dart';
 
-// 5. TRASHPAGE (SAMPAH)
-
 class TrashPage extends StatefulWidget {
   const TrashPage({super.key});
 
@@ -15,10 +13,9 @@ class TrashPage extends StatefulWidget {
 }
 
 class _TrashPageState extends State<TrashPage> {
-  // Salinan data supaya bisa dikosongkan
   List<Note> _notes = List.of(trashNotes);
 
-  // Dialog konfirmasi "Kosongkan Sampah"
+  // Kosongkan Sampah
   void _confirmEmptyTrash() {
     showDialog(
       context: context,
@@ -49,7 +46,7 @@ class _TrashPageState extends State<TrashPage> {
     );
   }
 
-  // Tampilan saat Sampah kosong: ikon besar + teks di tengah
+  // Tampilan saat Sampah kosong
   Widget _emptyState() {
     return const Center(
       child: Column(
@@ -73,7 +70,6 @@ class _TrashPageState extends State<TrashPage> {
       appBar: AppBar(
         title: const Text('Sampah', style: TextStyle(fontSize: 22)),
         actions: [
-          // Ikon titik tiga -> menu "Kosongkan Sampah"
           PopupMenuButton<String>(
             icon: const Icon(Icons.more_vert, color: Colors.white70),
             color: kButtonBg,
@@ -93,7 +89,6 @@ class _TrashPageState extends State<TrashPage> {
           ? _emptyState()
           : Column(
               children: [
-                // Info masa simpan catatan di Sampah
                 const Padding(
                   padding: EdgeInsets.fromLTRB(24, 8, 24, 16),
                   child: Text(

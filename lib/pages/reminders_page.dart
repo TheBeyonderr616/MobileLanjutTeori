@@ -5,9 +5,7 @@ import 'package:mobile_lanjut_utp/models/note.dart';
 import 'package:mobile_lanjut_utp/pages/add_note_page.dart';
 import 'package:mobile_lanjut_utp/widgets/keep_drawer.dart';
 
-// 6. REMINDERSPAGE (PENGINGAT)
-
-// Helper: format reminder datetime ke string "Hari, dd MMM • HH:mm"
+// format reminder datetime ke string "Hari, dd MMM | HH:mm"
 String _formatReminder(DateTime dt) {
   final now = DateTime.now();
   final today = DateTime(now.year, now.month, now.day);
@@ -37,7 +35,7 @@ class RemindersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Urutkan reminder: yang terdekat di atas
+    // urutkan reminder yang terdekat di atas
     final sortedNotes = [...reminderNotes]
       ..sort((a, b) {
         if (a.reminder == null && b.reminder == null) return 0;

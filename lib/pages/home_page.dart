@@ -6,7 +6,6 @@ import 'package:mobile_lanjut_utp/widgets/note_grid.dart';
 import 'package:mobile_lanjut_utp/pages/add_note_page.dart';
 import 'package:mobile_lanjut_utp/pages/search_page.dart';
 
-// 1. HOMEPAGE (BERANDA)
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -14,7 +13,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const KeepDrawer(current: 'catatan'),
-      // AppBar berbentuk kolom pencarian 
+      // kolom pencarian 
       appBar: AppBar(
         toolbarHeight: 80,
         automaticallyImplyLeading: false,
@@ -27,14 +26,14 @@ class HomePage extends StatelessWidget {
           ),
           child: Row(
             children: [
-              // Ikon menu -> buka Drawer
+              // Ikon menu drawer
               Builder(
                 builder: (ctx) => IconButton(
                   icon: const Icon(Icons.menu),
                   onPressed: () => Scaffold.of(ctx).openDrawer(),
                 ),
               ),
-              // Teks "Telusuri Keep"
+              // Teks
               Expanded(
                 child: GestureDetector(
                   behavior: HitTestBehavior.opaque,
@@ -52,7 +51,7 @@ class HomePage extends StatelessWidget {
               const SizedBox(width: 12),
               const Icon(Icons.swap_vert, color: Colors.white70),
               const SizedBox(width: 12),
-              // Foto profil (lingkaran dengan border biru)
+              // profil
               Container(
                 width: 44,
                 height: 44,
@@ -78,11 +77,11 @@ class HomePage extends StatelessWidget {
               style: TextStyle(fontSize: 14, color: Colors.white70),
             ),
           ),
-          // GridView berisi kumpulan Card catatan
+          // kumpulan grid card catatan
           const Expanded(child: NoteGrid(notes: homeNotes)),
         ],
       ),
-      // Tombol "+" -> buka AddNotePage
+      // Tombol +
       floatingActionButton: SizedBox(
         width: 72,
         height: 72,

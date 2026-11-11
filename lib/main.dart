@@ -24,7 +24,7 @@ class KeepApp extends StatelessWidget {
           scrolledUnderElevation: 0,
         ),
       ),
-      // Batasi lebar app supaya tampil seperti layar HP saat dijalankan di web
+      // Batasi lebar app
       builder: (context, child) {
         return Container(
           color: Colors.black, 
